@@ -1,99 +1,109 @@
-/* import React, { useEffect, useState } from "react";
-import {
-  ActivityIndicator,
-  StyleSheet,
-  Text,
-  View,
-  FlatList,
-} from "react-native";
+import React, { useEffect, useState } from "react";
+import { View, Text, ActivityIndicator, StyleSheet, ScrollView } from "react-native";
 
-// Definimos la estructura que TypeScript espera de cada usuario que viene de la API
 interface Usuario {
   id: number;
   name: string;
-  email: string;
   username: string;
+  email: string;
 }
 
-export default function TP05() {
-  // 1. Estados iniciales exigidos por la cátedra
-  const [data, setData] = useState<Usuario[]>([]);
-  const [loading, setLoading] = useState(true);
+// Lista de nombres y apellidos comunes en español para reemplazar los de la API
+const nombresComunes = [
+  { name: "Juan Pérez", username: "juanito" },
+  { name: "María García", username: "mariag" },
+  { name: "Carlos Rodríguez", username: "carlitos" },
+  { name: "Ana Martínez", username: "anam" },
+  { name: "Luis López", username: "luis_l" },
+  { name: "Laura González", username: "laurita" },
+  { name: "José Hernández", username: "jose_h" },
+  { name: "Sofía Gómez", username: "sofig" },
+  { name: "Diego Fernández", username: "dieguito" },
+  { name: "Lucía Díaz", username: "lucia_d" },
+];
 
-  // 2. useEffect con array de dependencias vacío para evitar bucles infinitos
+export default function App() {
+  const [data, setData] = useState<Usuario[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/users")
       .then((response) => response.json())
-      .then((json) => {
-        console.log("Datos recibidos de la API:", json);
-        setData(json); // Guardamos la lista de usuarios
-        setLoading(false); // Apagamos el rulo de carga
+      .then((json: Usuario[]) => {
+        // Modificamos los usuarios antes de guardarlos en el estado
+        const usuariosModificados = json.map((usuario, index) => {
+          // Usamos el index para asignarle un nombre de nuestra lista común
+          const reemplazo = nombresComunes[index] || { name: usuario.name, username: usuario.username };
+          
+          return {
+            ...usuario,
+            name: reemplazo.name,
+            username: reemplazo.username,
+            // Opcional: adaptamos el email al nuevo nombre
+            email: `${reemplazo.username}@gmail.com`, 
+          };
+        });
+
+        setData(usuariosModificados);
+        setLoading(false);
       })
       .catch((error) => {
         console.error("Error al obtener datos:", error);
-        setLoading(false); // Apagamos la carga incluso si hay error para no tildar la app
+        setLoading(false);
       });
-  }, []); // <-- Candado crítico exigido por la profe
+  }, []);
 
-  // 3. Interfaz condicional: Si está cargando, muestra el ActivityIndicator nativo
   if (loading) {
     return (
       <View style={styles.center}>
-        <ActivityIndicator size="large" color="#0066cc" />
-        <Text style={styles.loadingText}>Cargando usuarios de la API...</Text>
+        <ActivityIndicator size="large" color="blue" />
+        <Text>Cargando usuarios...</Text>
       </View>
     );
   }
 
-  // 4. Interfaz final: Renderiza los datos obtenidos de internet de forma prolija
   return (
-    <View style={styles.container}>
-      <Text style={styles.titulo}>Usuarios Cargados: {data.length}</Text>
+    // Cambié View por ScrollView por si los 10 usuarios no caben en tu pantalla
+    <ScrollView style={styles.container}>
+      <Text style={styles.title}>
+        Usuarios cargados: {data.length}
+      </Text>
 
-      <FlatList
-        data={data}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => (
-          <View style={styles.tarjetaUsuario}>
-            <Text style={styles.nombre}>{item.name}</Text>
-            <Text style={styles.detalle}>
-              @{item.username} | {item.email}
-            </Text>
-          </View>
-        )}
-      />
-    </View>
+      {data.map((usuario) => (
+        <View key={usuario.id} style={styles.card}>
+          <Text style={styles.name}>{usuario.name}</Text>
+          <Text>@{usuario.username}</Text>
+          <Text>{usuario.email}</Text>
+        </View>
+      ))}
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#f4f4f6", padding: 20 },
+  container: {
+    flex: 1,
+    padding: 20,
+    backgroundColor: "#fff",
+  },
   center: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#f4f4f6",
   },
-  titulo: {
+  title: {
     fontSize: 22,
     fontWeight: "bold",
-    marginBottom: 15,
-    color: "#333",
-    textAlign: "center",
+    marginBottom: 20,
   },
-  loadingText: {
-    marginTop: 10,
-    fontSize: 16,
-    color: "#666",
-    fontStyle: "italic",
-  },
-  tarjetaUsuario: {
-    backgroundColor: "#fff",
-    padding: 16,
+  card: {
+    backgroundColor: "#f2f2f2",
+    padding: 15,
     borderRadius: 8,
     marginBottom: 10,
-    elevation: 2,
   },
-  nombre: { fontSize: 18, fontWeight: "bold", color: "#111" },
-  detalle: { fontSize: 14, color: "#666", marginTop: 4 },
-}); */
+  name: {
+    fontWeight: "bold",
+    fontSize: 18,
+  },
+});
