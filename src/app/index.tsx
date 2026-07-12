@@ -1,5 +1,5 @@
 import { Link } from "expo-router";
-import { ScrollView, StyleSheet, Text, View, Pressable } from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 
 export default function Home() {
   return (
@@ -9,53 +9,41 @@ export default function Home() {
       </Text>
 
       <View style={styles.menu}>
-        <Link href="/tp01/perfil" asChild>
-          <Pressable style={styles.boton}>
-            <Text style={styles.link}>👤 Ir a Perfil (TP01)</Text>
-          </Pressable>
+        <Link href="/tp01/perfil" style={styles.link}>
+          👤 Ir a Perfil (TP01)
         </Link>
 
-        <Link href="/tp02/saludo" asChild>
-          <Pressable style={styles.boton}>
-            <Text style={styles.link}>👋 Ir a Saludo (TP02)</Text>
-          </Pressable>
+        <Link href="/tp02/saludo" style={styles.link}>
+          👋 Ir a Saludo (TP02)
         </Link>
 
-        <Link href="/tp03/tresCajas" asChild>
-          <Pressable style={styles.boton}>
-            <Text style={styles.link}>🎨 Ir a las Tres Cajas (TP03)</Text>
-          </Pressable>
+        <Link href="/tp03/tresCajas" style={styles.link}>
+          🎨 Ir a las Tres Cajas (TP03)
         </Link>
 
-        <Link href="/tp04/formulario" asChild>
-          <Pressable style={styles.boton}>
-            <Text style={styles.link}>📝 Ir al Formulario (TP04)</Text>
-          </Pressable>
+        <Link href="/tp04/formulario" style={styles.link}>
+          📝 Ir al Formulario (TP04)
         </Link>
 
-        <Link href="/tp05" asChild>
-          <Pressable style={styles.boton}>
-            <Text style={styles.link}>📊 Ir a la Lista de Usuarios (TP05)</Text>
-          </Pressable>
+        <Link href="/tp05" style={styles.link}>
+          📊 Ir a la Lista de Usuarios (TP05)
         </Link>
 
-        <Link href="/tp06/Navegador" asChild>
-          <Pressable style={styles.boton}>
-            <Text style={styles.link}>🎬 Ir a la Lista de Películas (TP06)</Text>
-          </Pressable>
+        <Link href="/tp06/Navegador" style={styles.link}>
+          🎬 Ir a la Lista de Películas (TP06)
         </Link>
 
-        <Link href="/tp07/aplicacion" asChild>
-          <Pressable style={styles.boton}>
-            <Text style={styles.link}>📱 Ir a la Aplicación (TP07)</Text>
-          </Pressable>
+        <Link href="/tp07/aplicacion" style={styles.link}>
+          📱 Ir a la Aplicación (TP07)
         </Link>
 
-        <Link href="/tp08" asChild>
-          <Pressable style={styles.boton}>
-            <Text style={styles.link}>🌙 Ir a Context API (TP08)</Text>
-          </Pressable>
+           <Link href="/tp08" style={styles.link}>
+          🌙 Ir a Context API (TP08)
         </Link>
+        <Link href={"/tp09/A_index"} style={styles.link}>
+          🔐 Ir a AsyncStorage (TP09)
+        </Link>
+
       </View>
     </ScrollView>
   );
@@ -79,16 +67,14 @@ const styles = StyleSheet.create({
   },
   menu: {
     width: "80%",
-    gap: 15,
-  },
-  boton: {
-    backgroundColor: "#fff",
-    padding: 14,
-    borderRadius: 8,
+    rowGap: 15,
   },
   link: {
     fontSize: 18,
     color: "#0066cc",
+    padding: 14,
+    backgroundColor: "#fff",
+    borderRadius: 8,
     textAlign: "center",
   },
 });
