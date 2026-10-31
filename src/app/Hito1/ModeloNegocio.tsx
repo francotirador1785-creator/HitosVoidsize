@@ -13,9 +13,9 @@ export default function HitoScreen() {
           style={styles.backButton}
           onPress={() => router.push("/")}
         >
-          <Text style={styles.backText}>← Volver</Text>
+          <Text style={styles.backText}>Volver</Text>
         </TouchableOpacity>
-        <Text style={styles.bannerTitle}>Hito 5: TAM, SAM y SOM</Text>
+        <Text style={styles.bannerTitle}>Modelo de Negocio</Text>
       </View>
 
       {/* Contenedor de la Imagen */}
