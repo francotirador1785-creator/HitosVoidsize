@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "femApp",
-    "slug": "femApp",
+    "name": "Fabian.moviles26",
+    "slug": "Fabian.moviles26",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -34,6 +34,12 @@
             "imageWidth": 76
           }
         }
+      ],
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Permitir que la aplicación acceda a la cámara."
+        }
       ]
     ],
     "experiments": {
@@ -42,3 +48,4 @@
     }
   }
 }
+

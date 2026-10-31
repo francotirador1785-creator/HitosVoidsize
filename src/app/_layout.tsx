@@ -1,7 +1,11 @@
 import { Stack } from "expo-router";
 
-export default function Layout() {
-  return <Stack />;
-
-  //scxc
+export default function RootLayout() {
+  return (
+    <Stack
+      screenOptions={{
+        headerShown: false,
+      }}
+    />
+  );
 }
