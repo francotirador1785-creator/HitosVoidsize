@@ -32,10 +32,13 @@ export default function Nosotros() {
       </View>
 
       <ScrollView contentContainerStyle={styles.content}>
-        <Text style={styles.title}>Equipo de Trabajo</Text>
+        <Text style={styles.title}>Equipo:</Text>
         <Text style={styles.text}>Proyecto desarrollado por:</Text>
         <Text style={styles.names}>• Franco Fabián</Text>
-        <Text style={styles.names}>• Matías Santamaría</Text>
+        <Text style={styles.names}>• Aquiles Galvan</Text>
+        <Text style={styles.names}>• Enzo Romero</Text>
+        <Text style={styles.names}>• Santino Cichero</Text>
+        <Text style={styles.names}>• Matias Santamaria</Text>
         <Text style={styles.subtext}>Materia: Emprendimiento Productivo</Text>
       </ScrollView>
     </View>

@@ -33,11 +33,7 @@ export default function SobreVoidsize() {
 
       <ScrollView contentContainerStyle={styles.content}>
         <Text style={styles.title}>¿Qué es Voidsize?</Text>
-        <Text style={styles.text}>
-          Voidsize es un emprendimiento de indumentaria urbana y oversize
-          enfocado en la cultura juvenil, combinando diseños estéticos modernos,
-          temáticas de tendencia y una propuesta de valor independiente y audaz.
-        </Text>
+        <Text style={styles.text}>TEXTO SOBRE VOIDSIZE</Text>
       </ScrollView>
     </View>
   );
